@@ -98,7 +98,7 @@ export default function Dropdown({
             </div>
           </div>
           <ul className="px-3 pb-3 text-gray-500 space-y-3 text-start">
-            {data &&
+            {/* {data &&
               Object.keys(data).map((item, index) => (
                 <li
                   onClick={() => {
@@ -110,7 +110,24 @@ export default function Dropdown({
                 >
                   {item}
                 </li>
-              ))}
+              ))} */}
+            {data &&
+              Object.keys(data)
+                .filter((item) =>
+                  item.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                )
+                .map((item, index) => (
+                  <li
+                    onClick={() => {
+                      handleClick(item, name);
+                      setIsOpen(false);
+                    }}
+                    key={index}
+                    className="cursor-pointer hover:bg-gray-100"
+                  >
+                    {item}
+                  </li>
+                ))}
           </ul>
         </div>
       </div>
